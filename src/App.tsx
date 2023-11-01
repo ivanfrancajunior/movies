@@ -1,8 +1,10 @@
+import { Home } from "./pages/Home";
+
 function App() {
   return (
-    <>
-      <h2 className="text-3xl">oi</h2>
-    </>
+    <div>
+      <Home />
+    </div>
   );
 }
 
