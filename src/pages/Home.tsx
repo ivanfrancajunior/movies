@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { SingleMovie } from "../components/SingleMovie";
+import { options } from "../utils";
 
 interface MovieItem {
   id: number;
@@ -18,14 +19,9 @@ export const Home = () => {
   const [movieList, setMovieList] = useState<MovieItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+
   const url = `https://api.themoviedb.org/3/movie/top_rated?page=${page}`;
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${import.meta.env.TMDB_KEy}`,
-    },
-  };
+
   const imagePath = "https://image.tmdb.org/t/p/w500";
 
   useEffect(() => {
@@ -63,6 +59,7 @@ export const Home = () => {
               url={imagePath + movie.poster_path}
               name={movie.original_title}
               vote={movie.vote_count}
+              id={movie.id}
             />
           ))}
       </div>

@@ -1,9 +1,11 @@
-import { Home } from "./pages/Home";
+import { Outlet } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
     <div>
-      <Home />
+      <Navbar />
+      <Outlet />
     </div>
   );
 }
