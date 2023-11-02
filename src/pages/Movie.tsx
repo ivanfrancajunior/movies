@@ -1,66 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { options } from "../utils";
-
-export interface ProductionCompany {
-  id: number;
-  logo_path?: string;
-  name: string;
-  origin_country: string;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
-}
-export interface ProductionCountry {
-  iso_3166_1: string;
-  name: string;
-}
-export interface BelongsToCollection {
-  id: number;
-  name: string;
-  poster_path: string;
-  backdrop_path: string;
-}
-
-export interface SpokenLanguage {
-  english_name: string;
-  iso_639_1: string;
-  name: string;
-}
-export interface MovieItem {
-  adult: boolean;
-  backdrop_path: string;
-  belongs_to_collection: BelongsToCollection;
-  budget: number;
-  genres: Genre[];
-  homepage: string;
-  id: number;
-  imdb_id: string;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  production_companies: ProductionCompany[];
-  production_countries: ProductionCountry[];
-  release_date: string;
-  revenue: number;
-  runtime: number;
-  spoken_languages: SpokenLanguage[];
-  status: string;
-  tagline: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import { MovieItem } from "../types/types";
+import NotfoundImage from "../../public/no-image-icon-23494.png";
 
 const Movie = () => {
   const { id } = useParams();
   const [data, setData] = useState<MovieItem>();
   const imagePath = "https://image.tmdb.org/t/p/w500";
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
@@ -86,7 +34,11 @@ const Movie = () => {
           <div className="flex items-start justify-start min-w-[520px] h-[400px] min-h-[300px] gap-10 ">
             <div className=" shadow-md rounded-md w-[200px] h-[300px] hover:scale-110 transition duration-150">
               <img
-                src={imagePath + data.poster_path}
+                src={
+                  data.poster_path !== null
+                    ? imagePath + data.poster_path
+                    : NotfoundImage
+                }
                 alt={data.original_title}
                 className="shadow-md rounded-md "
               />
@@ -107,7 +59,10 @@ const Movie = () => {
                   </p>
                 ))}
               </div>
-              <h2 className="font-bold"> Lançamento {data.id}</h2>
+              <h2 className="font-bold">
+                {" "}
+                Lançamento {data.release_date.replace(/-/g, "/")}
+              </h2>
               <h2 className="font-bold">
                 Idioma:{" "}
                 <span className="font-bold italic">
@@ -121,9 +76,11 @@ const Movie = () => {
       </div>
       <div className="mt-5 p-20">
         <h2 className="text-3xl font-bold text-center my-5">About the movie</h2>
-        <p className="w-3/4 text-2xl mx-auto text-center">{data?.overview}</p>
+        <p className="w-3/4 text-2xl mx-auto text-center">
+          {data?.overview ? data.overview : "No overview avaliable 😒"}
+        </p>
         <div className="flex items-center justify-center">
-          <button className="text-2xl mx-auto text-center mt-20 w-[126px] h-10 rounded-2xl bg-[#fb5389] hover:filter hover:brightness-125 hover:shadow-lg shadow-[#e50914]">
+          <button onClick={() => navigate(-1)} className="text-2xl flex items-center justify-center text-center mt-20 w-[126px] h-10 rounded-2xl bg-[#fb5389] hover:filter hover:brightness-125 hover:shadow-lg shadow-[#e50914]">
             voltar
           </button>
         </div>

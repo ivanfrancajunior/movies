@@ -1,19 +1,8 @@
 import { useState, useEffect } from "react";
 import { SingleMovie } from "../components/SingleMovie";
 import { options } from "../utils";
-
-interface MovieItem {
-  id: number;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  backdrop_path: string;
-  realised_date: string;
-  title: string;
-  vote_average: number;
-  vote_count: number;
-}
+import { MovieItem } from "../types/types";
+import Spinner from "../components/Spinner";
 
 export const Home = () => {
   const [movieList, setMovieList] = useState<MovieItem[]>([]);
@@ -40,6 +29,10 @@ export const Home = () => {
     getMovies();
   }, [page]);
 
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="container flex flex-col h-full mx-auto items-center ">
       <h2>titulo mto elegante</h2>
@@ -47,12 +40,9 @@ export const Home = () => {
         <button onClick={() => setPage((c) => c + 1)}> + </button>
         <button onClick={() => setPage((c) => c - 1)}> - </button>
       </div>
-      <div className="flex flex-wrap justify-center ">
-        {loading && <p>carregando...</p>}
-      </div>
+      <div className="flex flex-wrap justify-center ">{loading && <Spinner />}</div>
       <div className="flex flex-wrap items-center justify-center gap-5 py-24 max-w-5xl ">
-        {!loading &&
-          movieList &&
+        {movieList &&
           movieList.map((movie) => (
             <SingleMovie
               key={movie.id}
