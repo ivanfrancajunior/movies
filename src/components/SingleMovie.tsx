@@ -4,6 +4,7 @@ import SvgComponent from "./SvgComponent";
 import { ItemProps } from "../types/types";
 
 
+
 export const SingleMovie = ({ name, vote, url, id }: ItemProps) => {
   return (
     <div className="flex flex-col items-center justify-center max-h-[500px] h-auto w-[185px] rounded-md">

@@ -3,16 +3,16 @@ import { useParams,useNavigate } from "react-router-dom";
 import { options } from "../utils";
 import { MovieItem } from "../types/types";
 import NotfoundImage from "../../public/no-image-icon-23494.png";
+import { imagePath } from "../utils";
 
 const Movie = () => {
   const { id } = useParams();
   const [data, setData] = useState<MovieItem>();
-  const imagePath = "https://image.tmdb.org/t/p/w500";
   const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
-      const url = `https://api.themoviedb.org/3/movie/${id}`;
+      const url = `https://api.themoviedb.org/3/movie/${id}?language=pt-BR`;
       const respose = await fetch(url, options);
       const json = await respose.json();
       console.log(json);
@@ -25,7 +25,7 @@ const Movie = () => {
   return (
     <div className="mx-auto h-full min-h-screen ">
       <div
-        className=" p-10 bg-cover bg-no-repeat opacity-90 hover:opacity-100 text-zinc-100 w-full h-full"
+        className=" p-10 bg-cover bg-no-repeat opacity-80 hover:opacity-100 text-[#fb5389] w-full h-full"
         style={{
           backgroundImage: `url(${imagePath + data?.backdrop_path}`,
         }}
@@ -75,8 +75,8 @@ const Movie = () => {
         )}
       </div>
       <div className="mt-5 p-20">
-        <h2 className="text-3xl font-bold text-center my-5">About the movie</h2>
-        <p className="w-3/4 text-2xl mx-auto text-center">
+        <h2 className="text-2xl font-bold text-center my-5">Resumo</h2>
+        <p className="w-3/4 text-xl mx-auto text-start">
           {data?.overview ? data.overview : "No overview avaliable 😒"}
         </p>
         <div className="flex items-center justify-center">

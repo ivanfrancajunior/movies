@@ -3,15 +3,17 @@ import { SingleMovie } from "../components/SingleMovie";
 import { options } from "../utils";
 import { MovieItem } from "../types/types";
 import Spinner from "../components/Spinner";
+import { imagePath } from "../utils";
+import { ResultsCount } from "../components/ResultsCount";
 
 export const Home = () => {
   const [movieList, setMovieList] = useState<MovieItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
 
-  const url = `https://api.themoviedb.org/3/movie/top_rated?page=${page}`;
-
-  const imagePath = "https://image.tmdb.org/t/p/w500";
+  const url = `https://api.themoviedb.org/3/movie/top_rated?page=${page}?language=pt-BR`;
 
   useEffect(() => {
     const getMovies = async () => {
@@ -19,6 +21,10 @@ export const Home = () => {
         setLoading(true);
         const response = await fetch(url, options);
         const json = await response.json();
+        setTotalResults(json.total_results);
+        setTotalPages(json.total_pages);
+        console.log(json);
+
         setMovieList(json.results);
         console.log(json.results);
         setLoading(false);
@@ -35,11 +41,12 @@ export const Home = () => {
 
   return (
     <div className="container flex flex-col h-full mx-auto items-center ">
-      <h2>titulo mto elegante</h2>
-      <div>
-        <button onClick={() => setPage((c) => c + 1)}> + </button>
-        <button onClick={() => setPage((c) => c - 1)}> - </button>
-      </div>
+      
+
+      <h2 className="text-4xl font-bold mt-10">
+        Obtenha uma lista de filmes ordenados por classificação
+      </h2>
+
       <div className="flex flex-wrap justify-center ">{loading && <Spinner />}</div>
       <div className="flex flex-wrap items-center justify-center gap-5 py-24 max-w-5xl ">
         {movieList &&
@@ -52,6 +59,10 @@ export const Home = () => {
               id={movie.id}
             />
           ))}
+      </div>
+      <div className="mb-10">
+
+      <ResultsCount total={totalResults} setPage={setPage} totalPages={totalPages} page={page}  />
       </div>
     </div>
   );
