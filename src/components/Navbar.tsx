@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { options } from "../utils";
-import { useNavigate } from "react-router-dom";
-import { RiMenuLine, RiSearchLine } from "react-icons/ri";
+import { Link, useNavigate } from "react-router-dom";
+import {  RiSearchLine } from "react-icons/ri";
 import logoIcon from "../assets/icons8-camera-40.png";
 export const Navbar = () => {
   const [query, setQuery] = useState("");
@@ -30,12 +30,12 @@ export const Navbar = () => {
     navegate(`/search/${query}`);
   };
   return (
-    <nav className="bg-[#080808] h-24 px-20  flex items-center justify-between gap-20  text-[#d8d8d8] font-bold  w-full">
-      <h1 className="min-w-24  flex items-center justify-center">
-        <img src={logoIcon} alt="" className="h-10 w-10"/>
-      </h1>
+    <nav className="bg-[#080808] h-24 px-10  flex items-center justify-between  text-[#d8d8d8] font-bold  w-full">
+      <Link to={"/"} className="w-24  flex items-center justify-center min-w-[120px]">
+        <img src={logoIcon} alt="" className="h-10 w-10" /> <span className="ml-2">FillBerry</span>
+      </Link>
       <form
-        className="hidden md:flex  items-center justify-center max-w-[600px] gap-2 p-2"
+        className="flex  items-center justify-center min-w-[320px] max-w-[500px] gap-2 p-2"
         onSubmit={handleSubmit}
       >
         <input
@@ -50,9 +50,7 @@ export const Navbar = () => {
           <RiSearchLine size={24} />
         </button>
       </form>
-      <div className="md:hidden w-1/6">
-        <RiMenuLine size={24} />
-      </div>
+
       <div className=" hidden md:flex md:w-1/6"></div>
     </nav>
   );

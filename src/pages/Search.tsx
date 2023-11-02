@@ -42,7 +42,7 @@ const Search = () => {
   }, [query, page]);
 
   return (
-    <div>
+    <div className="container mx-auto p-10">
       resultados encontrados = {total}
       <div>
         <button onClick={() => setPage((c) => c + 1)}> + </button>

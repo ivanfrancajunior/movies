@@ -50,7 +50,7 @@ export const Home = () => {
       <div className="flex flex-wrap justify-center ">
         {loading && <p>carregando...</p>}
       </div>
-      <div className="flex flex-wrap justify-center gap-5 py-24 max-w-5xl ">
+      <div className="flex flex-wrap items-center justify-center gap-5 py-24 max-w-5xl ">
         {!loading &&
           movieList &&
           movieList.map((movie) => (
