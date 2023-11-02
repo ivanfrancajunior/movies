@@ -1,5 +1,5 @@
 
-# FillBerry de Filmes com TMDB API
+# FillBerry: App pra consulta de filmes com TMDB API
 
 ### Esta é uma aplicação de filmes desenvolvida em React, usando TypeScript e Tailwind CSS. Ela se integra à API do TMDB para buscar informações sobre filmes e apresentá-las aos usuários. A aplicação oferece recursos diversos, incluindo:
 
