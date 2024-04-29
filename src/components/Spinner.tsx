@@ -1,13 +1,7 @@
-import styles from "./Spinner.module.css";
-
 const Spinner = () => {
   return (
-    <div className="flex items-center justify-center w-full mt-20">
-      <div className={styles.ldsEllipsis}>
-        <div></div>
-        <div className="middle"></div>
-        <div></div>
-      </div>
+    <div className='w-full px-5 pt-2 text-end'>
+      <span className='loading loading-spinner  text-primary'></span>
     </div>
   );
 };

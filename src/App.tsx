@@ -3,10 +3,10 @@ import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
-    <div>
+    <main data-theme='cupcake'>
       <Navbar />
       <Outlet />
-    </div>
+    </main>
   );
 }
 
