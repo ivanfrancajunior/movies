@@ -3,7 +3,7 @@ import { Navbar } from "./components/Navbar";
 
 function App() {
   return (
-    <main data-theme='cupcake'>
+    <main data-theme='pastel'>
       <Navbar />
       <Outlet />
     </main>

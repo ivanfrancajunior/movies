@@ -11,13 +11,13 @@ type GenresResponse = {
 };
 
 const useGenres = () => {
-  const { data, isLoading, error, isError } = useQuery<GenresResponse>({
+  const fetchGenres = () =>
+    apiClient.get("/genre/movie/list").then((res) => res.data);
+  return useQuery<GenresResponse>({
     queryKey: ["genres"],
-    queryFn: () => apiClient.get("/genre/movie/list").then((res) => res.data),
+    queryFn: fetchGenres,
     staleTime: 1000 * 60 * 60 * 24,
   });
-
-  return { data, isLoading, error, isError };
 };
 
 export default useGenres;

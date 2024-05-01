@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { options } from "../utils/utils";
-import { MovieItem } from "../types/types";
 import NotfoundImage from "../assets/images/no-image-icon-23494.png";
 import { imagePath } from "../utils/utils";
+import { MovieItem } from "../hooks/useMovies";
 
 const Movie = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const Movie = () => {
   return (
     <div className='mx-auto h-full min-h-screen '>
       <div
-        className=' size-full bg-cover bg-no-repeat p-10 text-[#fb5389] opacity-80 hover:opacity-100'
+        className=' size-full bg-cover bg-no-repeat p-10 opacity-80 hover:opacity-100'
         style={{
           backgroundImage: `url(${imagePath + data?.backdrop_path}`,
         }}
@@ -45,7 +45,7 @@ const Movie = () => {
             </div>
             <div className='flex flex-col items-start justify-start gap-2'>
               <h2 className='text-2xl font-bold'>
-                <span className='text-[#fb5389] hover:brightness-150'>
+                <span className=' hover:brightness-150'>
                   {" "}
                   {data.original_title}
                 </span>{" "}
@@ -54,12 +54,12 @@ const Movie = () => {
               <div className='flex gap-2 font-bold'>
                 <h2>Gênero: </h2>{" "}
                 {data.genres.map((gen) => (
-                  <p
-                    className='flex gap-1'
+                  <span
+                    className='badge flex gap-1'
                     key={gen.id}
                   >
                     <span>{gen.name}</span>
-                  </p>
+                  </span>
                 ))}
               </div>
               <h2 className='font-bold'>
@@ -85,7 +85,7 @@ const Movie = () => {
         <div className='flex items-center justify-center'>
           <button
             onClick={() => navigate(-1)}
-            className='mt-20 flex h-10 w-[126px] items-center justify-center rounded-2xl bg-[#fb5389] text-center text-2xl shadow-[#e50914] hover:shadow-lg hover:brightness-125'
+            className='btn btn-accent  mt-5'
           >
             voltar
           </button>
@@ -96,3 +96,4 @@ const Movie = () => {
 };
 
 export default Movie;
+//TODO: CREATE A CUSTOM HOOK TO HANDLE WITH SEARCH

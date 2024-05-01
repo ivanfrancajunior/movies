@@ -29,7 +29,7 @@ export const Navbar = () => {
     navegate(`/search/${query}`);
   };
   return (
-    <nav className='navbar flex w-full items-center  justify-between bg-accent px-10  font-bold shadow-md'>
+    <nav className='navbar flex w-full items-center  justify-between bg-neutral px-10  font-bold shadow-md'>
       <Link
         to={"/"}
         className='flex w-24 min-w-[120px] items-center justify-center'

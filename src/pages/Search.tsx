@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CardItem from "../components/CardItem";
 import Spinner from "../components/Spinner";
-import { MovieItem } from "../types/types";
 import { options } from "../utils/utils";
+import { MovieItem } from "../hooks/useMovies";
+
 const Search = () => {
   const { query } = useParams();
 
   const [loading, setLoading] = useState(false);
-  const [search, setSearch] = useState<MovieItem[]>([]);
+  const [search, setSearch] = useState<MovieItem[] | undefined>([]);
 
   console.log(query);
 
@@ -45,3 +46,4 @@ const Search = () => {
 };
 
 export default Search;
+//TODO: CREATE A CUSTON HOOK TO SEARCH BY ID AND ADD A ID IN RTQ QUERYKEY

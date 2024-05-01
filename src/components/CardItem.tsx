@@ -1,14 +1,18 @@
-import { Movie } from "../hooks/useMovies";
+import { MovieItem } from "../hooks/useMovies";
 import fallback from "../assets/images/no-image-icon-23494.png";
 import { formateDate } from "../utils/dateFormate";
 
 type Props = {
-  movie: Movie;
+  movie: MovieItem;
+  handleClick?: () => void;
 };
 
-const CardItem = ({ movie }: Props) => {
+const CardItem = ({ movie, handleClick }: Props) => {
   return (
-    <div className='card w-72 rounded-md bg-base-200  shadow-xl transition  duration-150 hover:scale-105'>
+    <div
+      className='card w-72 rounded-md bg-base-200  shadow-xl transition  duration-150 hover:scale-105'
+      onClick={handleClick}
+    >
       <figure>
         <img
           src={

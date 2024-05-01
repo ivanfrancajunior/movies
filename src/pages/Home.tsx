@@ -1,11 +1,11 @@
 import Genres from "../components/Genres";
-import Movies from "../components/Movies";
+import MoviesList from "../components/MoviesList";
 
 export const Home = () => {
   return (
     <main className='mt-8 flex'>
       <Genres />
-      <Movies />
+      <MoviesList />
     </main>
   );
 };

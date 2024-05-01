@@ -20,3 +20,4 @@ const Genres = () => {
 };
 
 export default Genres;
+//TODO: CREATE A CUSTOM HOOK TO HANDLE WITH SEARCHS BY GENRE
