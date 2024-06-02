@@ -2,11 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from "./pages/Home.tsx";
+import { Latest } from "./pages/Latest.tsx";
 import Movie from "./pages/Movie.tsx";
 import Search from "./pages/Search.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Playground from "./pages/Playground.tsx";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -16,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Latest />,
       },
       {
         path: "/movie/:id",
@@ -26,15 +36,23 @@ const router = createBrowserRouter([
         path: "/search/:query",
         element: <Search />,
       },
+      {
+        path: "/playground",
+        element: <Playground />,
+      },
     ],
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <Latest />,
   },
 ]);
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(
+  document.getElementById("root")!
+).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

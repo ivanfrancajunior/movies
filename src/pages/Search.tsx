@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { options } from "../utils";
 import { useEffect, useState } from "react";
-import { SingleMovie } from "../components/SingleMovie";
-import Spinner from "../components/Spinner";
+import { SingleMovie } from "../ui/SingleMovie";
+import Spinner from "../ui/Spinner";
 import NotfoundImage from "../../public/no-image-icon-23494.png";
 import { imagePath } from "../utils";
 import { MovieItem } from "../types/types";
-import { ResultsCount } from "../components/ResultsCount";
+import { ResultsCount } from "../ui/ResultsCount";
 const Search = () => {
   const { query } = useParams();
   const [page, setPage] = useState(1);
@@ -39,14 +39,14 @@ const Search = () => {
   }
 
   return (
-    <div className="container flex flex-col h-full mx-auto items-center ">
+    <div className='container flex flex-col h-full mx-auto items-center '>
       <ResultsCount
         total={total}
         setPage={setPage}
         page={page}
         totalPages={totalPages}
       />
-      <div className="flex flex-wrap items-center justify-center gap-5 py-24 max-w-5xl ">
+      <div className='flex flex-wrap items-center justify-center gap-5 py-24 max-w-5xl '>
         {search &&
           search.map((movie) => (
             <SingleMovie
