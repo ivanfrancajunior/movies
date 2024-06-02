@@ -14,8 +14,8 @@ export const Latest = () => {
       hasMore={!!hasNextPage}
       next={() => fetchNextPage()}
       dataLength={fetchMoreGamesCount}
+      className=' flex flex-col'
     >
-      <div className=' flex flex-col h-full '>
         <h2 className='text-4xl font-bold mt-10 text-center'>
           Get a list of movies that are currently in
           theatres
@@ -31,7 +31,6 @@ export const Latest = () => {
             })
           )}
         </div>
-      </div>
     </InfinitScroll>
   );
 };

@@ -14,9 +14,11 @@ const Search = () => {
   return (
     <div className='container flex flex-col h-full mx-auto items-center '>
       <div className='grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3  p-8 gap-2'>
-        {data?.results.map((movie) => (
-          <MovieItem key={movie.id} movie={movie} />
-        ))}
+        {
+          data?.results.map((movie) => (
+            <MovieItem key={movie.id} movie={movie} />
+          ))
+        }
       </div>
     </div>
   );

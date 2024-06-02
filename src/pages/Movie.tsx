@@ -2,12 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import useMovie from "../hooks/useMovie";
 import { formateDate } from "../utils/dateFormater";
 import Spinner from "../ui/Spinner";
+import { imagePath } from "../utils/filePath";
 
 const Movie = () => {
   const { id } = useParams();
   const { data, isLoading } = useMovie(id);
   const navigate = useNavigate();
-  const imagePath = "https://image.tmdb.org/t/p/original";
 
   if (isLoading) return <Spinner />;
   return (
