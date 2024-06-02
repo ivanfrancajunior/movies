@@ -1,23 +1,10 @@
 import { useState } from "react";
-import { options } from "../utils";
+import { RiSearchLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
-import {  RiSearchLine } from "react-icons/ri";
 import logoIcon from "../assets/icons8-camera-40.png";
 export const Navbar = () => {
   const [query, setQuery] = useState("");
-
   const navegate = useNavigate();
-
-  const getData = async () => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${query}`,
-      options
-    );
-    const json = await response.json();
-
-    console.log(json);
-  };
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setQuery("");
@@ -25,8 +12,6 @@ export const Navbar = () => {
     if (query === "") {
       return;
     }
-
-    getData();
     navegate(`/search/${query}`);
   };
   return (

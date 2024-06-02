@@ -101,12 +101,16 @@ const MovieItem = ({ movie }: Props) => {
         <p>
           <span className='text-zinc-400'>Release</span>{" "}
           <span className='text-white font-semibold'>
-            {formateDate(new Date(movie.release_date))}
+            {formateDate(new Date(movie.release_date)) ||
+              "---"}
           </span>
         </p>
         <div className='space-x-1 uppercase text-sm flex mt-2 font-semibold '>
           {movie.genre_ids.map((item) => (
-            <span className='badge bg-neutral rounded-full' key={item}>
+            <span
+              className='badge bg-neutral rounded-full'
+              key={item}
+            >
               {genres.find((genre) => genre.id === item)
                 ?.name || ""}
             </span>
